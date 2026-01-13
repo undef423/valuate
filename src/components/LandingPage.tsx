@@ -4,6 +4,7 @@ import {
   IconFileText,
   IconSparkles,
 } from '@tabler/icons-react'
+import { Link } from '@tanstack/react-router'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 
@@ -59,7 +60,9 @@ export function LandingPage() {
       {/* Navbar */}
       <nav className="relative flex items-center justify-between px-6 py-4 max-w-5xl mx-auto">
         <span className="text-xl font-semibold">ValuAte</span>
-        <Button size="sm">Try Demo</Button>
+        <Button size="sm" asChild>
+          <Link to="/valuation">Try Demo</Link>
+        </Button>
       </nav>
 
       {/* Hero */}
@@ -74,8 +77,8 @@ export function LandingPage() {
           Get a defensible valuation range in under 3 minutes. No signup
           required.
         </p>
-        <Button size="lg" className="relative">
-          Create Valuation
+        <Button size="lg" className="relative" asChild>
+          <Link to="/valuation">Create Valuation</Link>
         </Button>
       </section>
 
@@ -125,7 +128,9 @@ export function LandingPage() {
         <p className="text-muted-foreground mb-6">
           No account needed. Results in minutes.
         </p>
-        <Button size="lg">Get Started</Button>
+        <Button size="lg" asChild>
+          <Link to="/valuation">Get Started</Link>
+        </Button>
       </section>
 
       {/* Footer */}
