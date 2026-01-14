@@ -36,6 +36,7 @@ export function ValuationForm({ onSubmit, defaultValues }: ValuationFormProps) {
       description: defaultValues?.description ?? '',
     } as StartupInput,
     validators: {
+      onChange: startupInputSchema,
       onSubmit: ({ value }) => {
         const result = startupInputSchema.safeParse(value)
         if (!result.success) {
@@ -76,9 +77,9 @@ export function ValuationForm({ onSubmit, defaultValues }: ValuationFormProps) {
                 onBlur={field.handleBlur}
                 placeholder="Acme Inc."
               />
-              {field.state.meta.errors.length > 0 && (
+              {!field.state.meta.isValid && (
                 <p className="text-sm text-destructive">
-                  {field.state.meta.errors.join(', ')}
+                  {field.state.meta.errors?.[0]?.message}
                 </p>
               )}
             </div>
@@ -123,9 +124,9 @@ export function ValuationForm({ onSubmit, defaultValues }: ValuationFormProps) {
                 onBlur={field.handleBlur}
                 min={0}
               />
-              {field.state.meta.errors.length > 0 && (
+              {!field.state.meta.isValid && (
                 <p className="text-sm text-destructive">
-                  {field.state.meta.errors.join(', ')}
+                  {field.state.meta.errors?.[0]?.message}
                 </p>
               )}
             </div>
@@ -144,9 +145,9 @@ export function ValuationForm({ onSubmit, defaultValues }: ValuationFormProps) {
                 onChange={(e) => field.handleChange(Number(e.target.value))}
                 onBlur={field.handleBlur}
               />
-              {field.state.meta.errors.length > 0 && (
+              {!field.state.meta.isValid && (
                 <p className="text-sm text-destructive">
-                  {field.state.meta.errors.join(', ')}
+                  {field.state.meta.errors?.[0]?.message}
                 </p>
               )}
             </div>
@@ -165,9 +166,9 @@ export function ValuationForm({ onSubmit, defaultValues }: ValuationFormProps) {
                 onChange={(e) => field.handleChange(Number(e.target.value))}
                 onBlur={field.handleBlur}
               />
-              {field.state.meta.errors.length > 0 && (
+              {!field.state.meta.isValid && (
                 <p className="text-sm text-destructive">
-                  {field.state.meta.errors.join(', ')}
+                  {field.state.meta.errors?.[0]?.message}
                 </p>
               )}
             </div>
@@ -188,9 +189,9 @@ export function ValuationForm({ onSubmit, defaultValues }: ValuationFormProps) {
                 min={1}
                 max={50}
               />
-              {field.state.meta.errors.length > 0 && (
+              {!field.state.meta.isValid && (
                 <p className="text-sm text-destructive">
-                  {field.state.meta.errors.join(', ')}
+                  {field.state.meta.errors?.[0]?.message}
                 </p>
               )}
             </div>
@@ -210,9 +211,9 @@ export function ValuationForm({ onSubmit, defaultValues }: ValuationFormProps) {
                 placeholder="Describe what your startup does, your target market, business model, and competitive advantages..."
                 rows={4}
               />
-              {field.state.meta.errors.length > 0 && (
+              {!field.state.meta.isValid && (
                 <p className="text-sm text-destructive">
-                  {field.state.meta.errors.join(', ')}
+                  {field.state.meta.errors?.[0]?.message}
                 </p>
               )}
             </div>
