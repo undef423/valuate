@@ -13,6 +13,7 @@ import { Link } from '@tanstack/react-router'
 import type { StartupInput, ValuationResult, AIAnalysis } from '@/lib/valuation'
 import { calculateValuation, formatCurrency } from '@/lib/engine'
 import { analyzeValuation } from '@/api/analyze'
+import { exportValuationPdf } from '@/lib/exportPdf'
 
 export const Route = createFileRoute('/valuation')({
   component: ValuationPage,
@@ -288,7 +289,14 @@ function ValuationPage() {
                   <Button variant="outline" onClick={handleReset}>
                     Start Over
                   </Button>
-                  <Button variant="outline">
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      if (input && result) {
+                        exportValuationPdf(input, result, analysis)
+                      }
+                    }}
+                  >
                     <IconDownload className="size-4" />
                     Export PDF
                   </Button>
