@@ -26,6 +26,8 @@ function ValuationPage() {
   const [analysisLoading, setAnalysisLoading] = useState(false)
   const [analysisError, setAnalysisError] = useState<string | null>(null)
 
+  const [formKey, setFormKey] = useState(0)
+
   const handleSubmit = (data: StartupInput) => {
     setInput(data)
     const valuation = calculateValuation(data)
@@ -59,6 +61,7 @@ function ValuationPage() {
     setResult(null)
     setAnalysis(null)
     setAnalysisError(null)
+    setFormKey((prev) => prev + 1)
   }
 
   return (
@@ -96,6 +99,7 @@ function ValuationPage() {
               {result ? input?.companyName : 'Enter Startup Details'}
             </h1>
             <ValuationForm
+              key={formKey}
               onSubmit={handleSubmit}
               defaultValues={input ?? undefined}
             />
